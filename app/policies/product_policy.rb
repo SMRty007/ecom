@@ -12,7 +12,7 @@ class ProductPolicy < ApplicationPolicy
     def edit?
       user.seller?
     end
-    def destory?
+    def destroy?
       user.seller?
     end
   end

@@ -1,3 +1,3 @@
 class Order < ApplicationRecord
-    belong_to :Customer
+    belongs_to :customer
 end

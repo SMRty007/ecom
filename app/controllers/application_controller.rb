@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
         if resource.type.eql?('Seller')
             sellers_url
         else 
-            customers_url
+            products_url
         end
     end
 end

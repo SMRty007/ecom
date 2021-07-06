@@ -1,9 +1,24 @@
 <h2>Sign up</h2>
+<style>
+.field {
+  font-family: "Times New Roman", Times, serif;
+}
+
+h2 {
+  color: green;
+}
+body {
+    text-align: center;
+}
+form {
+    display: inline-block;
+}
+</style>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
- <div class="field">
+    <div class="field">
   <%= f.label :name %><br />
   <%= f.text_field  :name %>
  </div>

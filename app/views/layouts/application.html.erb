@@ -9,16 +9,14 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-
     <% if user_signed_in? %>
       <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
       <% else %>
       <%- if controller_name != 'sessions' %>
         <%= link_to "Log in", new_session_path(:user) %><br />
       <% end %>
-      <% end %>
+      <% end %> 
     <%= yield %>
   </body>
 </html>

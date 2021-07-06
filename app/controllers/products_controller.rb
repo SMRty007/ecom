@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
-  skip_before_action:authenticate_user!, :only => [:index, :show]
+  skip_before_action :authenticate_user!, only: %i[ index show]
   # GET /products or /products.json
   def index
     @products = Product.all
@@ -37,7 +37,7 @@ class ProductsController < ApplicationController
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
 
-    end
+  end
   end
 
   # PATCH/PUT /products/1 or /products/1.json
@@ -57,15 +57,24 @@ class ProductsController < ApplicationController
 
   # DELETE /products/1 or /products/1.json
   def destroy
-    current_user.products.new.find(params[:id])
-    @product.destroy
     authorize @product
+    current_user.products.find(params[:id])
+    @product.destroy
     respond_to do |format|
       format.html { redirect_to products_url, notice: "Product was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
-
+  def add_to_cart
+    cart = current_user.carts.new
+    cart.product_id = params[:id]
+    cart.save
+    redirect_to products_path
+  end
+  def remove_from_cart
+    cart = current_user.carts.where(product_id: params[:id]).first
+    cart.destroy
+    redirect_to products_path
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product

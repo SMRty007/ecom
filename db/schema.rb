@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2021_07_05_091423) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "carts", force: :cascade do |t|
-    t.integer "customer_id"
-    t.integer "product_id"
+    t.bigint "customer_id"
+    t.bigint "product_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_carts_on_customer_id"
@@ -22,8 +25,8 @@ ActiveRecord::Schema.define(version: 2021_07_05_091423) do
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.integer "order_id"
-    t.integer "product_id"
+    t.bigint "order_id"
+    t.bigint "product_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["order_id"], name: "index_order_items_on_order_id"
@@ -31,7 +34,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_091423) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "customer_id"
+    t.bigint "customer_id"
     t.string "order_status"
     t.integer "amount"
     t.datetime "created_at", precision: 6, null: false
@@ -40,7 +43,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_091423) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.integer "seller_id"
+    t.bigint "seller_id"
     t.string "product_name"
     t.integer "product_amount"
     t.string "product_info"

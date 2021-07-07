@@ -8,5 +8,4 @@ class OrdersController < ApplicationController
     order= Order.find(params[:id])
     @products = order.products
   end
-
 end

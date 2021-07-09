@@ -8,15 +8,36 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%#= javascript_include_tag 'application', 'data-turbolinks-track': true %>
   </head>
-  <body>
-    <% if user_signed_in? %>
-      <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-      <% else %>
-      <%- if controller_name != 'sessions' %>
-        <%= link_to "Log in", new_session_path(:user) %><br />
-      <% end %>
-      <% end %> 
-    <%= yield %>
-  </body>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-primary">
+  <a class="navbar-brand" href="#">ECOM</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">
+          <% if user_signed_in? %>
+            <%= button_to "Sign out", destroy_user_session_path, :method => :delete, class: "btn btn-outline-primary" %>
+          <% else %>
+            <% if controller_name != 'sessions' %>
+              <%= button_to "Log in", new_session_path(:user), class: "btn btn-outline-primary btn-sm" %><br />
+            <% end %>
+          <% end %>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<body>
+  <%= yield %>
+</body>
 </html>

@@ -21,7 +21,7 @@
           <% if current_user.carts.where(product_id: product.id).present? %>
             <%= link_to 'Remove_from_cart', remove_from_cart_product_path(product), method: 'delete'  %></td>
           <% else %>
-            <%= link_to 'Add_to_cart', add_to_cart_product_path(product), method: 'post' %>
+            <%= link_to 'Add_to_cart', add_to_cart_product_path(product), method: 'get' %>
           <% end %>
         <% end %>  
         <% if user_signed_in? %>

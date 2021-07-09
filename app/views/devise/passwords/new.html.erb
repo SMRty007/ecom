@@ -1,4 +1,28 @@
+<br>
 <h2>Forgot your password?</h2>
+<br>
+<style>
+  h2 {
+    color: green;
+  }
+  form {
+    display: inline-block;
+  }
+  .field {
+    font-family: "Times New Roman", Times, serif;
+  }
+  body {
+    margin:50px 0px; padding:0px;
+    text-align:center;
+    align:center;
+  }
+  label,input {
+    color: red;
+  }
+  label {
+    color: violet;
+  }
+</style>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -7,10 +31,11 @@
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
-
+  <br>
   <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+    <%= f.submit "Send me reset password instructions" ,class:'btn btn-outline-primary' %>
   </div>
 <% end %>
-
+<br>
+<br>
 <%= render "devise/shared/links" %>

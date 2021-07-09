@@ -25,7 +25,19 @@
   </tbody>
 </table>
 <br>
-<%= link_to 'Place Order', place_order_path(product_ids: @products.pluck(:id)) %>
+
+<%= form_for Order.new, url: place_order_path  do |f|  %>
+  <div class="fields">
+    <%= f.label "Paid" %> <br />
+    <%= f.check_box :paid_status, {}, true, false %>
+
+    <%= hidden_field_tag :product_ids, @products.pluck(:id) %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Place Order", class: "button small radius" %>
+  </div>
+<% end %>
+
 <%= link_to 'back', root_path %>
 
 

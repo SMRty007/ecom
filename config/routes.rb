@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   get 'carts/index', to: 'carts#index'
   get 'orders/index', to: 'orders#index'
   get 'orders/show/:id', to: 'orders#show', as: 'order'
-  get 'carts/place_order', to: 'carts#place_order', as: 'place_order'
+  get 'sellers/order_list', to: 'sellers#order_list', as: 'order_list'
+  post 'carts/place_order', to: 'carts#place_order', as: 'place_order'
   devise_for :users, controllers: {
     registrations: 'customers/registrations'
   }
@@ -16,7 +17,7 @@ Rails.application.routes.draw do
   resources :customers
   resources :products do
     member do
-      post '/add_to_cart', to: 'products#add_to_cart', as: 'add_to_cart'
+      get '/add_to_cart', to: 'products#add_to_cart', as: 'add_to_cart'
       delete '/remove_from_cart', to: 'products#remove_from_cart', as: 'remove_from_cart'
     end
   end

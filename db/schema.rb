@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_091423) do
   create_table "order_items", force: :cascade do |t|
     t.bigint "order_id"
     t.bigint "product_id"
+    t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["order_id"], name: "index_order_items_on_order_id"
@@ -35,8 +36,8 @@ ActiveRecord::Schema.define(version: 2021_07_05_091423) do
 
   create_table "orders", force: :cascade do |t|
     t.bigint "customer_id"
-    t.string "order_status"
     t.integer "amount"
+    t.boolean "paid_status", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_orders_on_customer_id"

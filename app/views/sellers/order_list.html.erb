@@ -1,0 +1,25 @@
+<h2>ordered item</h2>
+<table>
+  <thead>
+    <tr>  
+      <th>Product name</th>
+      <th>Amount</th>
+      <th>info</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @products .each do |product|%>
+    <tr>
+        <td><%= product.product_name %></td>
+        <td><%= product.product_amount %></td>
+        <td><%= product.product_info %></td>
+     </tr>
+  <% end %>
+  </tbody>
+</table>
+<%# <form>
+    form for order
+    add select field for order status
+</form> %>
+
+<%= link_to 'Back', sellers_path %>

@@ -17,4 +17,9 @@
 <% if user_signed_in? && policy(@product).edit? %>
   <%= link_to 'Edit', edit_product_path(@product) %> |
 <% end %>
-<%= link_to 'Back',  root_path %>
+
+<% if user_signed_in? && current_user.type == 'Customer'%>
+  <%= link_to 'Back',  root_path %>
+<%else%>
+  <%= link_to 'Back',  sellers_path %>
+<%end%>

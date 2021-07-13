@@ -14,7 +14,7 @@
         <td><%= product.product_name %></td>
         <td><%= product.product_amount %></td>
         <td><%= product.product_info %></td>
-        <td><%#  product.product_status%></td>
+        <td><%=  product.order_items.first.status%></td>
         <td><%= link_to 'Show', product %></td>
       </tr>
     <% end %>

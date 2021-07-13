@@ -3,7 +3,7 @@ class CreateOrderItems < ActiveRecord::Migration[6.1]
     create_table :order_items do |t|
       t.belongs_to :order
       t.belongs_to :product
-      t.string     :status
+      t.string     :status, default: "pending"
       t.timestamps
     end
   end

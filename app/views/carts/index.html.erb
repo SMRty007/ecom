@@ -18,7 +18,7 @@
         <td><%= link_to 'Show', product %></td>
         <td>
           <% if current_user.carts.where(product_id: product.id).present? %>
-            <%= link_to 'Remove_from_cart', remove_from_cart_product_path(product), method: 'delete'  %></td>
+            <%= button_to 'Remove_from_cart', remove_from_cart_product_path(product), method: 'delete'  %></td>
           <% end %>
          </tr>
     <% end %>
@@ -26,16 +26,19 @@
 </table>
 <br>
 
-<%= form_for Order.new, url: place_order_path  do |f|  %>
+<%= form_for Order.new, url: orders_create_path  do |f|  %>
   <div class="fields">
-    <%= f.label "Paid" %> <br />
-    <%= f.check_box :paid_status, {}, true, false %>
-
+    <%= f.label "Paid" %>
+    <%#= f.check_box :paid_status, {}, true, false %>
+    <%= f.check_box(:paid_status, options = {:checked => true}, checked_value =  true, unchecked_value = false) %>  
+    <br>
     <%= hidden_field_tag :product_ids, @products.pluck(:id) %>
   </div>
-  <div class="actions">
-    <%= f.submit "Place Order", class: "button small radius" %>
-  </div>
+  <% if @products.present? %>
+    <div class="actions">
+      <%= f.submit "Place Order", class: "button small radius" %>
+    </div>
+    <% end %>
 <% end %>
 
 <%= link_to 'back', root_path %>

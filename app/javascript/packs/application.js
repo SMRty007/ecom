@@ -8,12 +8,11 @@
 // import * as ActiveStorage from "@rails/activestorage"
 // import "channels"
 // import '../js/bootstrap_js_files.js'
-
 // Rails.start()
 // Turbolinks.start()
 // ActiveStorage.start()
 import 'bootstrap'
+require("packs/product")
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
-require("channels")

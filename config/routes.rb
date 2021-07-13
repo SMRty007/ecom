@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
   
-  get 'order_items/index'
   get 'carts/index', to: 'carts#index'
   get 'orders/index', to: 'orders#index'
   get 'orders/show/:id', to: 'orders#show', as: 'order'
   get 'sellers/order_list', to: 'sellers#order_list', as: 'order_list'
-  post 'carts/place_order', to: 'carts#place_order', as: 'place_order'
+  post 'orders/create', to: 'orders#create'
   devise_for :users, controllers: {
     registrations: 'customers/registrations'
   }
@@ -22,4 +21,5 @@ Rails.application.routes.draw do
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :order_items, only: [:index, :update]
 end

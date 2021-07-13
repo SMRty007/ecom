@@ -27,6 +27,11 @@ class OrdersController < ApplicationController
     clear_cart                                                          
     redirect_to carts_index_path
   end
+  def update_order_item
+    order_item = OrderItem.find(params[:order_item_id])
+    order_item.update(status: params[:order_item][:status])
+    redirect_to order_list_path
+  end
   private
   def clear_cart
     current_user.carts.destroy_all

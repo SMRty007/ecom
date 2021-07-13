@@ -9,20 +9,22 @@
     </tr>
   </thead>
   <tbody>
-  <% @products.each do |product|%>
-    <tr order-item-id= <%= product.order_items.first.id %> >
+  <% @products .each do |product|%>
+    <tr order_item_id= <%= product.order_items.first.id %> >
         <td><%= product.product_name %></td>
         <td><%= product.product_amount %></td>
         <td><%= product.product_info %></td> 
         <td>
           <%#= select_tag("order_item[status]", options_for_select(OrderItem.statuses, product.order_items.first.status), class:'order-item-status-change') %>
-          <%= form_tag("/order_list", method: "get") do %>
-            <%= select_tag "order_item[status]", options_for_select( @statuses.collect {|d| [ d.status, d.status, d.status, d.status, d.status ] }) %>
-            <%= submit_tag("Search") %>
+          <%= form_tag("/orders/update_order_item", method: "get") do %>
+            <%= select_tag "order_item[status]", options_for_select( OrderItem.statuses, product.order_items.first.status) %>
+            <%= hidden_field_tag :order_item_id , product.order_items.first.id %>
+            <%= submit_tag("Update") %>
           <% end %>
         </td>
      </tr>
   <% end %>
   </tbody>
-</table>    
+</table>
+
 <%= link_to 'Back', sellers_path %>

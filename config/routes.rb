@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'carts/index', to: 'carts#index'
   get 'orders/index', to: 'orders#index'
   get 'orders/show/:id', to: 'orders#show', as: 'order'
+  get 'orders/update_order_item', to: 'orders#update_order_item'
   get 'sellers/order_list', to: 'sellers#order_list', as: 'order_list'
   post 'orders/create', to: 'orders#create'
   devise_for :users, controllers: {
